@@ -1,0 +1,304 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(56, 142, 60, 0.9);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Ensure header appears above other content */
+}
+
+
+.logo {
+    font-size: 24px; /* Increased font size */
+    font-weight: bold;
+    color: white; /* White color for text */
+    margin-right: 20px; /* Add margin */
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    
+}
+
+nav ul li {
+    margin-right: 20px; 
+     /* Increased margin */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white; /* White color for text */
+    font-size: 18px; /* Increased font size */
+    
+}
+
+/* Banner Section styles */
+.banner {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    background-image: url('u2.png'); /* Banner image URL */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blurry-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(4px); /* Apply blur effect */
+}
+
+.banner-content {
+    text-align: center;
+    color: white;
+    z-index: 1; /* Ensure content appears above the blurred background */
+}
+
+.banner-content h1 {
+    font-size: 42px; /* Increased font size */
+    margin-bottom: 15px; /* Increased margin */
+}
+
+.banner-content p {
+    font-size: 20px; /* Increased font size */
+    margin-bottom: 20px; /* Increased margin */
+}
+
+.banner-content h2 {
+    font-size: 28px; /* Increased font size */
+    margin-bottom: 20px; /* Increased margin */
+}
+
+/* Booking Form styles */
+.booking-form {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: calc(66vh - 30px); /* Position at lower third of the viewport */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    margin-bottom: 40px; /* Increased margin */
+}
+
+.search-bar input[type="text"] {
+    flex: 1; /* Take remaining space */
+    padding: 18px 24px; /* Increased padding */
+    border: none;
+    border-radius: 50px;
+    font-size: 18px; /* Increased font size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; /* Add margin between input and button */
+}
+
+.search-bar button {
+    padding: 18px 36px; /* Increased padding */
+    border: none;
+    background-color: #388E3C;
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px; /* Increased font size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Testimonials styles */
+.testimonials {
+    padding: 30px; /* Increased padding */
+    background-color: #fff;
+    margin: 30px auto; /* Increased margin */
+    max-width: 800px;
+}
+
+.testimonial {
+    padding: 30px; /* Increased padding */
+    background-color: #f9f9f9;
+    margin-bottom: 30px; /* Increased margin */
+}
+
+.testimonial blockquote {
+    font-size: 20px; /* Increased font size */
+    margin-bottom: 20px; /* Increased margin */
+}
+
+.testimonial cite {
+    font-style: italic;
+    font-size: 18px; /* Increased font size */
+}
+
+/* Special Offers styles */
+.special-offers {
+    padding: 30px; /* Increased padding */
+    background-color: #fff;
+    margin: 30px auto; /* Increased margin */
+    max-width: 800px;
+}
+
+.offer {
+    padding: 30px; /* Increased padding */
+    background-color: #f9f9f9;
+    margin-bottom: 30px; /* Increased margin */
+}
+
+.offer h3 {
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 20px; /* Increased margin */
+}
+
+/* Upcoming Events styles */
+.upcoming-events {
+    padding: 30px; /* Increased padding */
+    background-color: #fff;
+    margin: 30px auto; /* Increased margin */
+    max-width: 800px;
+}
+
+.event {
+    padding: 30px; /* Increased padding */
+    background-color: #f9f9f9;
+    margin-bottom: 30px; /* Increased margin */
+}
+
+.event h3 {
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 20px; /* Increased margin */
+}
+
+.event p {
+    font-size: 18px; /* Increased font size */
+    margin-bottom: 20px; /* Increased margin */
+}
+
+.event a {
+    display: inline-block;
+    background-color: #388E3C;
+    color: #fff;
+    padding: 14px 28px; /* Adjusted padding */
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* CSS for the user avatar dropdown menu */
+.avatar-wrapper {
+    position: relative; /* Ensure relative positioning for absolute children */
+    margin-right: 20px; /* Increased margin */
+}
+
+.avatar {
+    width: 36px; /* Increased size */
+    height: 36px; /* Increased size */
+    border-radius: 50%; /* Make image circular */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% - 5px); /* Adjust top positioning */
+    right: 0;
+    background-color: #388E3C; /* Green background color */
+    padding: 12px; /* Adjusted padding */
+    border-radius: 5px;
+    display: none; /* Initially hide the dropdown menu */
+    z-index: 1; /* Ensure the dropdown appears above other content */
+    color: white; /* Set text color to white */
+}
+
+/* Show dropdown menu on hover over the avatar or the dropdown menu */
+.avatar-wrapper:hover .dropdown-menu,
+.dropdown-menu:hover {
+    display: block;
+}
+
+/* Style for dropdown menu links */
+.dropdown-menu a {
+    display: block;
+    padding: 8px 16px; /* Adjusted padding */
+    text-decoration: none;
+    color: white; /* White color for text */
+    font-size: 16px; /* Adjusted font size */
+    line-height: 1.5; /* Adjust line height */
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo img {
+    width: 100px;
+}
+
+.footer-links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.footer-social ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-social li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer-social img {
+    width: 30px;
+    height: 30px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+}

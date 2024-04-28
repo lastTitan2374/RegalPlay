@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turf Details</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* Add CSS for Turf Details */
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Changed font to Helvetica Neue */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Background container with blur effect */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('bg2.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(3px);
+            -webkit-filter: blur(3px);
+        }
+        
+        .container {
+            max-width: 1400px; /* Increased container width */
+            margin: 20px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 15px; /* Increased border radius */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Added box shadow */
+        }
+        
+        h1 {
+            font-size: 40px; /* Increased font size */
+            margin-bottom: 20px;
+            color: #4caf50; /* Green color */
+            grid-column: 1 / -1;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 20px; /* Increased padding */
+            border-radius: 15px; /* Increased border radius */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Added box shadow */
+            grid-column: 1 / -1;
+        }
+
+        .turf-image {
+            display: inline-block;
+            width: 100%; /* Made image containers wider */
+            max-width: 400px; /* Maximum width for image containers */
+            margin-right: 20px;
+            border-radius: 15px; /* Increased border radius */
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .turf-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px; /* Increased border radius */
+        }
+        
+        .turf-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px; /* Increased border radius */
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Added box shadow */
+            grid-column: 1 / span 1;
+        }
+        
+        .address, .amenities, .rate, .rating, .additional-info, .customer-review {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px; /* Increased border radius */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+        }
+        
+        .stars {
+            color: #fdd835;
+            margin-right: 5px;
+        }
+        
+        .reviews {
+            margin-left: 5px;
+            color: #888;
+        }
+
+        .customer-review {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .customer-review .user {
+            background-color: #fff;
+            padding: 20px; /* Increased padding */
+            border-radius: 15px; /* Increased border radius */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .customer-review .user h4 {
+            margin-bottom: 10px;
+            color: #2a892d;
+        }
+        
+        .book-now {
+            background-color: #2d8530;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%; /* Make the button full width */
+        }
+        
+        .book-now:hover {
+            background-color: #267c2b;
+        }
+
+        .map-container {
+            background-color: #fff;
+            border-radius: 15px; /* Increased border radius */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Added box shadow */
+            grid-column: 2 / span 1;
+            overflow: hidden;
+        }
+
+        .map {
+            width: 100%;
+            height: 300px;
+        }
+
+        .offers {
+            background-color: #2d8b30;
+            padding: 20px;
+            border-radius: 15px; /* Increased border radius */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Added box shadow */
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+            font-family: 'Roboto', sans-serif; /* Changed font to Roboto */
+            background: linear-gradient(to bottom, #1c7612, #7fdc6d); /* Gradient background */
+        }
+
+        .offer {
+            background-color: white; /* Semi-transparent white background */
+            padding: 20px; /* Increased padding */
+            border-radius: 15px; /* Increased border radius */
+            margin-bottom: 20px; /* Increased margin */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease; /* Added transition */
+        }
+
+        .offer:hover {
+            transform: translateY(-5px); /* Add hover effect */
+        }
+
+        .offer-title {
+            font-weight: bold;
+            font-size: 24px; /* Increased font size */
+            color: #45a049; /* Changed offer title color */
+            font-family: 'Pacifico', cursive; /* Changed font to Pacifico */
+            margin: 0; /* Removed margin */
+            padding-bottom: 10px; /* Added padding */
+            border-bottom: 2px solid #fff; /* Added border bottom */
+        }
+    </style>
+</head>
+<body style="padding-top: 60px;">
+    <header>
+        <div class="logo">
+            <img  src="L1.png" style="height: 35px; width: auto;" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/RP\1.html">Home</a></li>
+                <li><a href="#">Facilities</a></li>
+                <li><a href="/RP\abt.html">About Us</a></li>
+                <li><a href="/RP\cus.html">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- User Account Section -->
+        <div class="user-account">
+            <div class="avatar-wrapper">
+                <img src="u1.png" alt="User Avatar" class="avatar"> <!-- Avatar icon URL -->
+                <div class="dropdown-menu"> <!-- Dropdown menu for user options -->
+                    <a href="/RP\profile.php">Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="/RP\logout.php">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="background-container"></div> <!-- Background container -->
+    <div class="container">
+        <h1 style="text-align: left; position: relative; left: 20px; color: #16661a;">Tiento Sports</h1>
+        
+        <div class="gallery-container">
+            <div class="turf-image">
+                <img src="i1.png" alt="Turf Image 1">
+            </div>
+            <div class="turf-image">
+                <img src="i2.png" alt="Turf Image 2">
+            </div>
+            <div class="turf-image">
+                <img src="i3.png" alt="Turf Image 3">
+            </div>
+            <div class="turf-image">
+                <img src="i4.png" alt="Turf Image 3">
+            </div>
+            <!-- Add more images as needed -->
+        </div>
+        
+        <div class="turf-details">
+            <h3>Address</h3>
+            <p class="address">Lal Bagh Main Rd, Srinivas Colony, Sudhama Nagar, Bengaluru, Karnataka 560027</p>
+            
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <ul>
+                    <li>Parking</li>
+                    <li>Washrooms</li>
+                    <li>Change Rooms</li>
+                    <!-- Add more amenities as needed -->
+                </ul>
+            </div>
+            
+            <div class="rate">
+                <h3>Rate (for 1/2 hour)</h3>
+                <p>Rs.350</p> <!-- Adjust rate as needed -->
+            </div>
+            
+            <div class="rating">
+                <h3>Rating:   </h3>
+                <span class="stars">★★★★★</span> <!-- Adjust star rating as needed -->
+                <span class="reviews">(5 reviews)</span> <!-- Adjust number of reviews as needed -->
+            </div>
+
+            <h3>Additional Information</h3>
+            <p>Contact: +91 1234567890</p>
+            <p>Opening Hours: Mon-Sat 8:00 AM - 10:00 PM</p>
+            <!-- Add more information as needed -->
+        </div>
+
+        <div class="map-container">
+           <br> <h3>  Map</h3>
+            <div class="map">
+                <!-- Corrected map embed code with the new coordinates -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6222.499766467325!2d77.59226365582208!3d12.962431042488179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1671750ff2d5%3A0x6dcd0434e1c13d79!2sTiento%20Sports!5e0!3m2!1sen!2sin!4v1647837781908!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="additional-info">
+            <h3>Customer Reviews</h3>
+            <div class="customer-review">
+                <div class="user">
+                    <h4>John Smith</h4>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <p>Great turf with excellent facilities!</p>
+                </div>
+                <div class="user">
+                    <h4>Rachael Thomas</h4>
+                    <div class="rating">
+                        <span class="stars">★★★☆☆</span>
+                    </div>
+                    <p>Nice place, but could improve cleanliness.</p>
+                </div>
+                <!-- Add more reviews as needed -->
+            </div>
+            <br><br><br><br>
+            <center><a href="/RP\Book\c.html"><button style="height: 50px; width: 500px;" class="book-now">Book Now</button></center></a>
+        </div>
+
+        <div class="offers">
+            <h2 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Offers Available</h2><br>
+            <div class="offer">
+                <p class="offer-title">Offer 1: Get Rs.100 off on your first booking!</p>
+            </div><br><br>
+            <div class="offer">
+                <p class="offer-title">Offer 2: Avail 20% discount on group bookings (4 or more people)!</p>
+            </div><br><br>
+            <div class="offer">
+                <p class="offer-title">Offer 3: Special discount for students on weekdays!</p>
+            </div>
+        </div>
+    </div>
+    <footer style="background-color:#137e18;">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="L1.png" style="height: 40px; width: auto;" alt="Footer Logo">
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="\RP/1.html">Home</a></li>
+                    <li><a href="#">Facilities</a></li>
+                    <li><a href="\RP/abt.html">About Us</a></li>
+                    <li><a href="\RP/cus.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank"><img src="f.png" alt="Facebook"></a></li>
+                    <li><a href="https://twitter.com/?lang=en" target="_blank"><img src="t1.png" alt="Twitter"></a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank"><img src="i.png" alt="Instagram"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 RegalPlay. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

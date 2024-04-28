@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Turf Booking</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* CSS for positioning the image containers */
+        .left-image-container,
+        .right-image-container {
+            position: fixed;
+            top: 15%;
+            height: 200%;
+            width: 25%; /* Adjust width as needed */
+            z-index: -1;
+        }
+
+        .left-image-container {
+            left: 0;
+        }
+
+        .right-image-container {
+            right: 0;
+        }
+
+        .left-image-container img,
+        .right-image-container img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* CSS for Featured Turf Listings background */
+        .featured-turfs {
+            background-image: url('c.jpeg'); /* Background image URL */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 0;
+            padding: 50px 0; /* Adjust padding as needed */
+            overflow: hidden;
+            display: flex; /* Use flexbox to make containers side by side */
+            justify-content: center; /* Align containers to the center */
+        }
+
+        .blurry-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('c2.jpeg'); /* Same as background image */
+            filter: blur(12px); /* Adjust blur strength */
+            z-index: -1;
+        }
+
+        .turf-container {
+            background-color: rgba(255, 255, 255, 0.7); /* Background color with opacity */
+            padding: 20px; /* Adjust padding as needed */
+            border-radius: 10px; /* Rounded corners */
+            margin: 0 10px; /* Add space between containers */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+            max-width: 400px; /* Limit container width */
+        }
+
+        .turf-container h2 {
+            font-size: 24px; /* Adjust font size */
+            color: #333; /* Text color */
+            margin-bottom: 10px; /* Add space below heading */
+        }
+
+        .turf-container img {
+            border-radius: 10px; /* Apply border radius to images */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Add shadow effect to images */
+            margin-bottom: 10px; /* Add space below images */
+        }
+
+        .turf-container p {
+            color: #333; /* Text color */
+            line-height: 1.5; /* Adjust line height */
+        }
+
+        .turf-container button {
+            padding: 18px 36px; /* Increased padding */
+            border: none;
+            background-color: white;
+            color: #47ad4e;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px; /* Increased font size */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+        }
+        .turf-container h2 {
+            font-size: 24px; /* Adjust font size */
+            color: #333; /* Text color */
+            margin-bottom: 10px; /* Add space below heading */
+        }
+        .featured-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 70px;
+        }
+        .translucent-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+            z-index: 1000; /* Ensure mask is above other content */
+            display: none; /* Initially hide mask */
+        }
+        
+        /* CSS for login section */
+        .login-section {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1001; /* Ensure login section is above mask */
+            display: none; /* Initially hide login section */
+        }
+        
+        .login-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-section input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .login-section button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0ea540;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-section button:hover {
+            background-color:#0ea540;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .socials-container {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 20px 40px;
+  background-color: #137e18;
+}
+.social {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgb(194, 194, 194);
+}
+.twitter:hover {
+  background: linear-gradient(45deg, #66757f, #00acee, #36daff, #dbedff);
+}
+.facebook:hover {
+  background: linear-gradient(45deg, #134ac0, #316ff6, #78a3ff);
+}
+.google-plus:hover {
+  background: linear-gradient(45deg, #872419, #db4a39, #ff7061);
+}
+.instagram:hover {
+  background: #f09433;
+  background: -moz-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: -webkit-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+}
+.social svg {
+  fill: white;
+  height: 20px;
+}
+
+
+
+
+
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 4px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+    </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var translucentMask = document.getElementById("translucentMask");
+        var loginSection = document.getElementById("loginSection");
+
+        // Show login section and translucent mask when page loads
+        loginSection.style.display = "block";
+        translucentMask.style.display = "block";
+
+        // Function to hide login section and translucent mask
+        function hideLoginSection() {
+            loginSection.style.display = "none";
+            translucentMask.style.display = "none";
+        }
+
+        // Add event listener to the translucent mask
+        translucentMask.addEventListener("click", function(event) {
+            // Check if the click occurred outside the login section
+            if (!loginSection.contains(event.target)) {
+                hideLoginSection(); // Hide login section and translucent mask
+            }
+        });
+
+        // Simulate successful login (remove this part in your actual implementation)
+        var loginButton = loginSection.querySelector("button[type='submit']");
+        loginButton.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent form submission (for demo purpose)
+            hideLoginSection(); // Hide login section and translucent mask
+        });
+    });
+</script>
+    
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img  src="L1.png" style="height: 35px; width: auto;" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                
+                <li><a href="abt.html">About Us</a></li>
+                <li><a href="cus.html">Contact</a></li>
+                <li><a href="login.php">Login</a></li>
+                <li><a href="reg.html">Register User</a></li>
+                <li><a href="register_process.php">Register Turf</a></li>
+            </ul>
+        </nav>
+        <!-- User Account Section -->
+        <div class="user-account">
+            <div class="avatar-wrapper">
+                <img src="u1.png" alt="User Avatar" class="avatar" > <!-- Avatar icon URL -->
+                <div class="dropdown-menu"> <!-- Dropdown menu for user options -->
+                    <a href="profile.php">Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="logout.php">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <div class="blurry-bg"></div>
+        <div class="banner-content">
+            <img  src="L1.png" style="height: 80px; width: auto;" alt="Logo">
+            <!-- Booking Form --><br><br><br><br><br><br>
+            <div class="search-bar">
+                
+
+                
+                <form action="search.php" method="POST" >
+                    
+                    <input type="text" id="search_term" name="search_term" placeholder="Search by Turf Name or District" style="width: 500px;">
+                    <button type="submit">Search</button>
+                </form>
+            
+            </div>
+        </div>
+    </section>
+    
+    <div style="background-color: #47ad4e; color: white;">        
+        <section class="featured-turfs">   
+            <h2 class="featured-heading" style="text-align: left; position: relative; left: -100px;">Featured Turfs</h2> <br>   
+            <div class="blurry-bg"></div>
+            
+            <!-- First Turf Container -->
+            <div  class="turf-container">
+                
+                <h2>Tiento Sports</h2>
+                <img src="t3.png" alt="Turf Image" width="300">
+                <b><p>About Venue</b> <br>
+                    Box Cricket is not available at this venue <br>
+                    Football: <br>
+                    - It is recommended but not compulsory to wear football studs while playing at the facility. <br>
+                    - Metal studs are not allowed. <br>
+                    Related To Tiento Sports Mission Road <br>
+                    Sports Clubs in Mission Road, Football Grounds in Mission Road, Football Grounds in Bengaluru, Sports Clubs in Bengaluru</p><br>
+                <a href="tp/tp1.html"><button>Book Now</button> </a>
+            </div>
+
+            <!-- Second Turf Container -->
+            <div  class="turf-container">
+                <h2>Sky Arena</h2>
+                <img src="t2.png" alt="Turf Image" width="300">
+                <b><p>About Venue</b> <br>
+                    Football: <br>
+                    - It is recommended but not compulsory to wear football studs while playing at the facility. <br>
+                    - Metal studs are not allowed. <br>
+                    - Please get your own footballs. Football not available at the venue. <br>
+                    Box Cricket: - Please get your own bats & balls. Bat & Ball not available at the venue. <br>
+                    <br>
+                    Sports Clubs in Commercial Street, Football Grounds in Commercial Street, Box-cricket Clubs in Commercial Street, Football Grounds in Bengaluru, Box-cricket Clubs in Bengaluru, Sports Clubs in Bengaluru</p>
+                <br><a href="tp/tp2.html"><button>Book Now</button> </a><br><br><br><br>
+            </div>
+            
+        </section>
+        
+    </div>
+
+    <!-- Left Image Container -->
+    <div class="left-image-container">
+        <!-- Insert left image here -->
+        <img src="p11.png" alt="Left Image">
+    </div>
+
+    <!-- Right Image Container -->
+    <div class="right-image-container">
+        <!-- Insert right image here -->
+        <img src="p12.png" alt="Right Image">
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <!-- Rest of the testimonials content -->
+        <div class="testimonial">
+            <blockquote> "I absolutely love booking through RegalPlay! The process is seamless, and I always find the perfect turf for my matches."</blockquote>
+            <cite>Sarah Johnson</cite>
+        </div>
+        <div class="testimonial">
+            <blockquote>"Booking with RegalPlay has made organizing our weekly football games so much easier. The platform is user-friendly, and the turfs are top-notch!"</blockquote>
+            <cite>John Smith</cite>
+        </div>
+        <div class="testimonial">
+            <blockquote> "I've been using RegalPlay for months now, and I've never had any issues. The variety of turfs available and the ease of booking keep me coming back!"</blockquote>
+            <cite>Mathai Xavier</cite>
+        </div>
+        <div class="testimonial">
+            <blockquote>"RegalPlay has made turf booking so convenient. I appreciate how I can easily filter turfs based on my preferences and schedule."</blockquote>
+            <cite>Anna Chacko</cite>
+        </div>
+    </section>
+
+    <!-- Special Offers Section -->
+    <section class="special-offers">
+        <h2>Special Offers</h2>
+        <!-- Rest of the special offers content -->
+        <div class="offer">
+            <h3>50% Off Weekend Bookings!</h3>
+            <p>Valid from <b>01/03/24 to 01/04/24</b>. Book now!</p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer style="background-color:#137e18;">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="L1.png" style="height: 40px; width: auto;" alt="Footer Logo">
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    
+                    <li><a href="abt.html">About Us</a></li>
+                    <li><a href="cus.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social" style="width: 60px; height: 70px; position: relative; right: 150px;">
+                <div class="socials-container">
+                    <a href="https://twitter.com/" target="_blank" class="social twitter">
+                      <svg height="1em" viewBox="0 0 512 512">
+                        <path
+                          d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+                        ></path>
+                      </svg>
+                    </a>
+                  
+                    <a href="https://www.facebook.com/" target="_blank" class="social facebook"
+                      ><svg height="1em" viewBox="0 0 320 512">
+                        <path
+                          d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
+                        ></path></svg
+                    ></a>
+                  
+                    
+                  
+                    <a href="https://www.instagram.com/" target="_blank" class="social instagram"
+                      ><svg height="1em" viewBox="0 0 448 512">
+                        <path
+                          d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                        ></path></svg
+                    ></a>
+                  </div>
+                  
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 RegalPlay. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

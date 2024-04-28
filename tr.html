@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turf Owner Registration</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Include your custom CSS file -->
+    <style>
+        /* CSS for registration form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .registration-form {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .registration-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            resize: none; /* Prevent resizing of textarea */
+        }
+
+        .form-group input[type="file"] {
+            margin-top: 5px; /* Adjust margin as needed */
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #137e18;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0e5a11;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-form">
+        <h2>Turf Owner Registration</h2>
+        <form action="register_process.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Turf Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="amenities">Amenities:</label>
+                <textarea id="amenities" name="amenities" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="rate">Rate for 1/2 hour:</label>
+                <input type="text" id="rate" name="rate" required>
+            </div>
+            <div class="form-group">
+                <label for="additional_info">Additional Information:</label>
+                <textarea id="additional_info" name="additional_info" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="district">District:</label>
+                <input type="text" id="district" name="district" required>
+            </div>
+            <div class="form-group">
+                <label for="map_location">Map Location:</label>
+                <input type="text" id="map_location" name="map_location" required>
+            </div>
+            <div class="form-group">
+                <label for="image1">Image 1:</label>
+                <input type="file" id="image1" name="image1" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="image2">Image 2:</label>
+                <input type="file" id="image2" name="image2" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="image3">Image 3:</label>
+                <input type="file" id="image3" name="image3" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="image4">Image 4:</label>
+                <input type="file" id="image4" name="image4" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Turf Booking</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* Add CSS for payment methods */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 135px;
+            left: 180px;
+            
+            width: 1200px;
+            height: 650.4px;
+            background-image: url('g2.png'); /* Set background image */
+             /* Make sure the image covers the entire background */
+            background-position: center; /* Center the background image */
+            filter: blur(8px); /* Apply blur effect */
+            z-index: -1; /* Move the background behind other content */
+        }
+
+        .container {
+            position: relative; /* Ensure content is positioned relative to the body */
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 1; /* Ensure content is above the background */
+        }
+        
+        .payment-method {
+            background-color: #ffffff;
+            text-align: center;
+            margin: 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6); /* Add shadow */
+            border-radius: 10px; /* Add border radius */
+            padding: 20px; /* Add padding */
+            transition: transform 0.3s ease; /* Add transition */
+            width: 500px;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-5px); /* Add hover effect */
+        }
+
+        .payment-method h2 {
+            margin-bottom: 10px;
+        }
+
+        .payment-options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .payment-option {
+            margin-bottom: 10px;
+        }
+
+        .payment-option input[type="radio"] {
+            display: none;
+        }
+
+        .payment-option label {
+            display: block;
+            border: 2px solid #ccc;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #47ad4e; /* Green text color */
+        }
+
+        .payment-option input[type="radio"]:checked + label {
+            border-color: #47ad4e; /* Green border color */
+        }
+
+        .confirm-payment {
+            background: #ccc; /* Grey background */
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: not-allowed;
+            margin-top: 20px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Add box-shadow transition */
+            align-self: flex-end; /* Align to the right */
+            margin-right: 20px; /* Add some margin */
+            text-decoration: none; /* Remove default button underline */
+            display: inline-block; /* Adjust display to inline-block */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4); /* Add shadow */
+        }
+
+        .confirm-payment.active {
+            background: linear-gradient(to right, #138d75, #47ad4e); /* Gradient background */
+            cursor: pointer;
+        }
+
+        /* Highlight selected payment method */
+        .selected-payment-method {
+            border: 2px solid #47ad4e; /* Add border outline */
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Background Container for Blur Effect -->
+    <div class="background-container"></div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="L1.png" style="height: 35px; width: auto;" alt="Logo">
+        </div>
+        <!-- Navigation Section -->
+        <nav>
+            <ul>
+                <li><a href="1.html">Home</a></li>
+                <li><a href="#">Facilities</a></li>
+                <li><a href="abt.html">About Us</a></li>
+                <li><a href="cus.html">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- User Account Section -->
+        <div class="user-account">
+            <div class="avatar-wrapper">
+                <img src="u1.png" alt="User Avatar" class="avatar"> <!-- Avatar icon URL -->
+                <div class="dropdown-menu"> <!-- Dropdown menu for user options -->
+                    <a href="#">Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h1 style="text-align: center; color: #137e18; padding-top: 100px;">Select Payment Method</h1>
+        <!-- Payment Methods Section -->
+        <section class="payment-methods">
+            <!-- UPI Payment Method -->
+            <div class="payment-method" id="upiPayment">
+                <h2>UPI</h2>
+                <input type="radio" id="upi" name="payment" value="upi" class="payment-option-radio">
+                <label for="upi"><img src="up1.png" alt="upi" style="height: 50px;width: auto;"></label>
+            </div>
+           
+            <!-- Bank Transfer Payment Method -->
+            <div class="payment-method" id="bankTransferPayment">
+                <h2>Bank Transfer</h2>
+                <input type="radio" id="bank_transfer" name="payment" value="bank_transfer" class="payment-option-radio">
+                <label for="bank_transfer"><img src="bt.png" alt="bank transfer" style="height: 60px;width: auto;"></label>
+            </div>
+            
+            <!-- Cash Payment Method -->
+            <div class="payment-method" id="cashPayment">
+                <h2>Cash</h2>
+                <input type="radio" id="cash" name="payment" value="cash" class="payment-option-radio">
+                <label for="cash"><img src="ca.png" alt="cash" style="height: 70px;width: auto;"></label>
+            </div>
+        </section>
+    </div>
+
+    <!-- Confirm Payment Button -->
+    <a href="sucs\sc.html" class="confirm-payment" style="position: relative; right: 580px; height: 50px; width: 300px; text-align: center;" disabled>Confirm Payment</a>
+<br><br>
+    <!-- Footer Section -->
+    <footer style="background-color:#137e18;">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="L1.png" style="height: 40px; width: auto;" alt="Footer Logo">
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Facilities</a></li>
+                    <li><a href="abt.html">About Us</a></li>
+                    <li><a href="cus.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <ul>
+                    <li><a href="https://www.facebook.com/" target="_blank"><img src="f.png" alt="Facebook"></a></li>
+                    <li><a href="https://twitter.com/?lang=en" target="_blank"><img src="t1.png" alt="Twitter"></a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank"><img src="i.png" alt="Instagram"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 RegalPlay. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const paymentOptions = document.querySelectorAll('.payment-option-radio');
+        const confirmPaymentButton = document.querySelector('.confirm-payment');
+
+        // Add event listener to each payment option
+        paymentOptions.forEach(option => {
+            option.addEventListener('change', () => {
+                // Remove existing outline
+                document.querySelectorAll('.payment-method').forEach(method => method.classList.remove('selected-payment-method'));
+                // Add outline to the selected payment method
+                option.closest('.payment-method').classList.add('selected-payment-method');
+                confirmPaymentButton.classList.add('active');
+                confirmPaymentButton.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

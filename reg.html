@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Turf Booking</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .registration-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .registration-form h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .registration-form input[type="text"],
+        .registration-form input[type="password"],
+        .registration-form input[type="email"],
+        .registration-form input[type="tel"],
+        .registration-form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .registration-form button {
+            background-color: #47ad4e;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .registration-form button:hover {
+            background-color: #3c903a;
+        }
+
+        .registration-form p {
+            margin-top: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .registration-form p a {
+            color: #47ad4e;
+            text-decoration: none;
+        }
+
+        .registration-form p a:hover {
+            text-decoration: underline;
+        }
+        nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+}
+.socials-container {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 20px 40px;
+  background-color: #137e18;
+}
+.social {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgb(194, 194, 194);
+}
+.twitter:hover {
+  background: linear-gradient(45deg, #66757f, #00acee, #36daff, #dbedff);
+}
+.facebook:hover {
+  background: linear-gradient(45deg, #134ac0, #316ff6, #78a3ff);
+}
+.google-plus:hover {
+  background: linear-gradient(45deg, #872419, #db4a39, #ff7061);
+}
+.instagram:hover {
+  background: #f09433;
+  background: -moz-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: -webkit-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+}
+.social svg {
+  fill: white;
+  height: 20px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img  src="L1.png" style="height: 35px; width: auto;" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/RP\1.html">Home</a></li>
+                <li><a href="#">Facilities</a></li>
+                <li><a href="/RP\abt.html">About Us</a></li>
+                <li><a href="/RP\cus.html">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- User Account Section -->
+        <div class="user-account">
+            <div class="avatar-wrapper">
+                <img src="u1.png" alt="User Avatar" class="avatar"> <!-- Avatar icon URL -->
+                <div class="dropdown-menu"> <!-- Dropdown menu for user options -->
+                    <a href="/RP\profile.php">Profile</a>
+                    <a href="#">Settings</a>
+                    <a href="/RP\logout.php">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="registration-form">
+        <h2>Register</h2>
+        <form action="register.php" method="post" id="registrationForm">
+            <input type="text" name="fullname" placeholder="Full Name" required>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+            <input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}">
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.php">Login here</a></p>
+    </div>
+    <script>
+        // Custom validation message for phone number field
+        document.getElementById('registrationForm').onsubmit = function(event) {
+            var phoneInput = document.getElementsByName('phone')[0];
+            if (!phoneInput.checkValidity()) {
+                event.preventDefault();
+                phoneInput.setCustomValidity('Please enter a valid 10-digit phone number.');
+            } else {
+                phoneInput.setCustomValidity('');
+            }
+        };
+    </script>
+    
+</body>
+</html>
